@@ -10,7 +10,6 @@ class Game():
         pygame.mixer.set_num_channels(20)
         mixer.init()
         pygame.init()
-        pygame.font.init()
         #MENU MUSIC
         pygame.mixer.music.load('clips/menu_music.wav')
         pygame.mixer.Channel(0).play(pygame.mixer.Sound('clips/menu_music.wav'),maxtime=5000)
@@ -22,7 +21,8 @@ class Game():
         self.display = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H))
         self.window = pygame.display.set_mode(
             ((self.DISPLAY_W, self.DISPLAY_H)))
-        self.font_name = './fonts/FreeSansBold.ttf'
+        self.font_name = '8-BIT WONDER.TTF'
+        self.font_name = pygame.font.get_default_font()
         self.BLACK, self.WHITE, self.RED = (0, 0, 0), (255, 255, 255), (255, 0 ,0)
         self.main_menu = MainMenu(self)
        # self.stages = StagesMenu(self)
@@ -62,6 +62,8 @@ class Game():
                     self.LEFT_KEY = True
                 if event.key == pygame.K_RIGHT:
                     self.RIGHT_KEY = True
+
+
 
     def reset_keys(self):
         self.UP_KEY, self.DOWN_KEY, self.START_KEY, self.BACK_KEY , self.LEFT_KEY , self.RIGHT_KEY = False, False, False, False ,False , False
