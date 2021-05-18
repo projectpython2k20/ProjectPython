@@ -25,10 +25,10 @@ pygame.display.set_caption('Εξεταστική on the run')
 
 
 #define font
-font = pygame.font.Font('./fonts/BAUHS93.TTF', 70)
-font_score = pygame.font.Font('./fonts/BAUHS93.TTF', 30)
-font_bar = pygame.font.Font('./fonts/arial.ttf', 15)
-critical_v1 = pygame.font.Font('./fonts/BAUHS93.TTF', 70)
+font = pygame.font.SysFont('Bauhaus 93', 70)
+font_score = pygame.font.SysFont('Bauhaus 93', 30)
+font_bar = pygame.font.SysFont('Arial', 15)
+critical_v1 = pygame.font.SysFont('Bauhaus 93', 70)
 
 
 
@@ -153,8 +153,6 @@ class Button():
 class Player(pygame.sprite.Sprite):
 	def __init__(self, x, y):
 		pygame.sprite.Sprite.__init__(self)
-		self.image = pygame.Surface([0, 0])
-		self.rect = self.image.get_rect()
 		self.reset(x, y)
 		self.health = 100
 		self.max_health = self.health
@@ -174,6 +172,8 @@ class Player(pygame.sprite.Sprite):
 		player.energy += 1.5
 		if player.energy > player.max_energy:
 			player.energy = player.max_energy
+
+		
 
 		if game_over == 0:
 			#get keypresses			
@@ -283,12 +283,6 @@ class Player(pygame.sprite.Sprite):
 					player.health -= 12.5
 					if player.health <= 0:
 						game_over = -1
-
-			#check wall collision
-			if self.rect.centerx > screen_width:
-				self.rect.centerx = screen_width
-			if self.rect.centerx < 0:
-				self.rect.centerx = 0
 
 
 			#check for collision with lava
